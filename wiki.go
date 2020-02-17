@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"regexp"
 )
 
@@ -38,6 +39,7 @@ func (p *Page) save() error {
 }
 
 func loadPage(title string) (*Page, error) {
+	os.Mkdir("data", 0777)
 	filename := "data/" + title + ".txt"
 	body, err := ioutil.ReadFile(filename)
 	if err != nil {
